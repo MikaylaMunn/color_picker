@@ -2,7 +2,7 @@
 <head>
     <title>Color Picker</title>
 </head>
-<body style="background-color: rgb({{ red }}, {{ green }}, {{ blue }});">
+<body style="background-color: rgb({{ red }}, {{ green }}, {{ blue }}); ">
     <div >
         <h2>Enter a number between 0 and 255 for each color below</h2>
         <form method="POST" action="{% url 'paint' %}">
@@ -19,7 +19,6 @@
                 {{ form.blue_amount }}
             </div>
             <div>
-                <br/>
                 <button type="submit">
                     Paint
                 </button>
