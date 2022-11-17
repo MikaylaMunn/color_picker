@@ -14,10 +14,7 @@ Activate the virtual environment depending on computer type</br>
 You need to install what is in the requirements.txt</br>
     ```pip install -r requirements.txt```</br>
 Finally, to run the app</br>
-     ```cd sandwich_box```</br>
+     ```cd paint_site```</br>
      ```python manage.py runserver```</br>
-# django_color_picker
-# color_picker
-# color_picker
-# color_picker
-# color_picker
+
+
