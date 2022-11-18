@@ -19,11 +19,12 @@ class ColorPickerView(View):
 
         return render(request=request, template_name="paint.html", context=context)
 
-    # This is the new content
+    # needed to get the users input
     def post(self, request):
         """Display the user's chosen color"""
+        # POST data sent back so we can see what color they picked
         form = ColorPickerForm(request.POST)
-
+        # accesses the data in the QueryDict
         red = int(request.POST["red_amount"])
         green = int(request.POST["green_amount"])
         blue = int(request.POST["blue_amount"])
@@ -35,7 +36,7 @@ class ColorPickerView(View):
             "blue": blue,
         }
 
-        return render(request= request, template_name="paint.html", context=context)
+        return render(request=request, template_name="paint.html", context=context)
 
     def get(self, request):
         """Present the color picker form and color the user"""
@@ -48,4 +49,4 @@ class ColorPickerView(View):
             "blue": 255,
         }
 
-        return render(request= request, template_name="paint.html", context=context)
+        return render(request=request, template_name="paint.html", context=context)
