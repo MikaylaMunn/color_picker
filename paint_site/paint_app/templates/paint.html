@@ -1,15 +1,79 @@
-<html>
+<!DOCTYPE html>
+<html lang="en">
 <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.4.1/dist/css/bootstrap.min.css" integrity="sha256-bZLfwXAP04zRMK2BjiO8iu9pf4FbLqX6zitd+tIvLhE=" crossorigin="anonymous">
+    <style>
+        .glow-on-hover {
+            width: 90px;
+            height: 35px;
+            border: none;
+            outline: none;
+            color: #000;
+            background: rgb(212, 212, 212);
+            cursor: pointer;
+            position: relative;
+            z-index: 0;
+            border-radius: 10px;
+            margin-top: 7px;
+        }
+        
+        .glow-on-hover:before {
+            content: '';
+            background: linear-gradient(45deg, #ff0000, #ff7300, #fffb00, #48ff00, #00ffd5, #002bff, #7a00ff, #ff00c8, #ff0000);
+            position: absolute;
+            top: -2px;
+            left: -2px;
+            background-size: 400%;
+            z-index: -1;
+            filter: blur(5px);
+            width: calc(100% + 4px);
+            height: calc(100% + 4px);
+            animation: glowing 20s linear infinite;
+            opacity: 0;
+            transition: opacity .3s ease-in-out;
+            border-radius: 10px;
+        }
+        
+        .glow-on-hover:active {
+            color: #000;
+        }
+        
+        .glow-on-hover:active:after {
+            background: transparent;
+        }
+        
+        .glow-on-hover:hover:before {
+            opacity: 1;
+        }
+        
+        .glow-on-hover:after {
+            z-index: -1;
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: rgb(212, 212, 212);
+            left: 0;
+            top: 0;
+            border-radius: 10px;
+        }
+    </style>
     <title>Color Picker</title>
 </head>
+{% comment %} we get the color for what the user inputs on the form {% endcomment %}
 <body style="background-color: rgb({{ red }}, {{ green }}, {{ blue }}); ">
-    <div >
+    <div class="text-center" >
         <h2>Enter a number between 0 and 255 for each color below</h2>
         <form method="POST" action="{% url 'paint' %}">
             {% csrf_token %}
             {% comment %} is a security thing that we need to add manually basically as an interim step until django developers fix it more directly. You can google what a csrf token is to learn more if you'd like! {% endcomment %}
             <div>
+                {% comment %} Prints out the label tag we set in forms.py {% endcomment %}
                 {{ form.red_amount.label_tag }}
+                {% comment %} the integer from forms {% endcomment %}
                 {{ form.red_amount }}
 
                 {{ form.green_amount.label_tag }}
@@ -18,12 +82,15 @@
                 {{ form.blue_amount.label_tag }}
                 {{ form.blue_amount }}
             </div>
-            <div>
-                <button type="submit">
+            <div class="container mt-5">
+            <div class ="justify-content-center">
+                <button class="btn btn-large glow-on-hover" type="submit">
                     Paint
                 </button>
             </div>
+        </div>
         </form>
     </div>
 </body>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js"></script>
 </html>

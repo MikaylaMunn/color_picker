@@ -17,7 +17,7 @@ class ColorPickerView(View):
             "blue": 255,
         }
 
-        return render(request, "paint.html", context=context)
+        return render(request=request, template_name="paint.html", context=context)
 
     # This is the new content
     def post(self, request):
@@ -35,7 +35,7 @@ class ColorPickerView(View):
             "blue": blue,
         }
 
-        return render(request, "paint.html", context=context)
+        return render(request= request, template_name="paint.html", context=context)
 
     def get(self, request):
         """Present the color picker form and color the user"""
@@ -48,4 +48,4 @@ class ColorPickerView(View):
             "blue": 255,
         }
 
-        return render(request, "paint.html", context=context)
+        return render(request= request, template_name="paint.html", context=context)
